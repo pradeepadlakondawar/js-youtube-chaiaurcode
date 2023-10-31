@@ -32,11 +32,40 @@ const obj3={...obj1,...obj2}  // commonly used
 
 // console.log(obj3);
 
-console.log(tinderUser);
-console.log(Object.keys(tinderUser));
-console.log(Object.values(tinderUser));
-console.log(Object.entries(tinderUser));
-console.log(tinderUser.hasOwnProperty("isLoggedIn"));
+// console.log(tinderUser);
+// console.log(Object.keys(tinderUser));
+// console.log(Object.values(tinderUser));
+// console.log(Object.entries(tinderUser));
+// console.log(tinderUser.hasOwnProperty("isLoggedIn"));
+
+// destructuring
+
+const course= {
+    courseName: "jsInHindi",
+    price : "999",
+    instructor: "hitesh"
+}
+console.log(course.instructor);
+
+const {instructor} =course; //destructuring method
+console.log(instructor);
+const {instructor:courseIns} =course; //destructuring method
+
+console.log(courseIns);
 
 
 
+// API json-javascript object notation
+// {
+//     "name":"hitesh",
+//     "coursname": "js in hindi",
+//     "price": "free"
+// }
+
+// [
+//     {},
+//     {},
+//     {}
+// ]
+
+// tools for reading api jason formater
