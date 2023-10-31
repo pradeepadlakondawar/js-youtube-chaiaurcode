@@ -48,13 +48,58 @@ function loginUserMessage (username){
     return `${username} loggedIn`
 }
 loginUserMessage("Pradeep"); // generally begineers do mistake
-console.log(loginUserMessage("Pradeep"));
-console.log(loginUserMessage());
+// console.log(loginUserMessage("Pradeep"));
+// console.log(loginUserMessage());
 
 
 // default value in parameter
 function loginUserMessage1 (username = "pro"){
     return `${username} loggedIn`
 }
-console.log(loginUserMessage1("Pradeep"));
-console.log(loginUserMessage1());
+// console.log(loginUserMessage1("Pradeep"));
+// console.log(loginUserMessage1());
+
+
+//when you dont know the number of args, for example your working on shopping cart and you dont know user will add how many items, he will keep on adding items and we have to calculate the amount of all items. == for this we use REST parameter
+
+function calculateCartPrice (...num1){
+    return num1;
+}
+// console.log(calculateCartPrice(200,300,400));
+
+function calculateCartPrice2 (val1,...num1){
+    return num1;
+}
+// console.log(calculateCartPrice2(200,300,400));
+
+
+// how to pass object in function and how to acces it
+
+const user ={
+    username: "pradeep",
+    price: 199
+}
+
+function handleObj (anyObject){
+    console.log(`user name is ${anyObject.username} and price is ${anyObject.price}`);
+}
+console.log(handleObj(user));
+// here we can directlly pass obj as argument
+console.log(handleObj({
+    username:"pro",
+    price: 200
+}))
+
+// we generally face issue in spelling mistakes as we need to check what we accesseing is it present in object or not and datatype of object. this are checks we have to implement.
+
+
+
+//passing arrays in function
+
+const myNewArr = [100,200,300];
+
+function retunSecondValue (getarray){
+    return getarray[1];
+}
+// console.log(retunSecondValue(myNewArr));
+console.log(retunSecondValue([1000,2000,3000,4000]));
