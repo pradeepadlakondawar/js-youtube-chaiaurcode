@@ -32,3 +32,17 @@ function one(){
 }
 
 one();
+
+
+//******************************intresting */
+console.log(addOne(5));
+function addOne(num){
+    return num + 2;
+}
+
+console.log(addTwo(5));
+const addTwo = function (num){
+    return num+3;
+}
+
+// here we have seen the hoisting how function is reacting for two diff declearations
