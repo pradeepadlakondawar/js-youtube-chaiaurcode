@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | chai aur code</title>
+</head>
+<body style="background-color: #212121; color: whitesmoke;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">wednesday</div>
+        <div class="day">thrusday</div>
+        <div class="day">Friday</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent')
+    // console.log(parent);
+    // console.log(parent.children);   // intresting most used 
+    // console.log(parent.children[1].innerHTML); 
+    
+    // as we can see it is a HTML collection , we can use loop right , not like map or forEach, we can use for loop right, let see
+
+    for (let index = 0; index < parent.children.length; index++) {
+        console.log(parent.children[index].innerHTML);
+        
+    }
+
+// some properties we must know, it will useful while targeting element in dom
+    parent.children[1].style.color="red"
+    // console.log(parent.firstElementChild);
+    // console.log(parent.lastElementChild);
+
+    const dayone =document.querySelector('.day')
+    // console.log(dayone);
+    // console.log(dayone.parentElement);
+    // console.log(dayone.nextElementSibling);
+
+    console.log("Nodes : ", parent.childNodes);  // imp  it is creating nodelist
+</script>
+</html>
