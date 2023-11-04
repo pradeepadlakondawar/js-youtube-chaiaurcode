@@ -33,7 +33,7 @@ buttons.forEach((button) => {
 });
 
 ```
-## project 2
+## project 2 solution code
 
 ```javascript
 
@@ -83,7 +83,7 @@ form.addEventListener('submit', function (e) {
 
 ```
 
-## Project 3
+## Project 3 solution code
 
 ```javascript
 
@@ -93,5 +93,113 @@ setInterval(function(){
   const date = new Date()
   clock.innerHTML=date.toLocaleTimeString()
 },1000)
+
+```
+
+## project 4 solution code
+
+```javascript
+
+let randomNumber = parseInt(Math.random() * 100 + 1);
+const submit = document.querySelector('#subt');
+const userinput = document.querySelector('#guessField');
+const guessSlot = document.querySelector('.guesses');
+const remaining = document.querySelector('.lastResult');
+const lowOrHi = document.querySelector('.lowOrHi');
+const startOver = document.querySelector('.resultParas');
+
+const p = document.createElement("p");
+
+let prevGuess = [];
+let numGuess = 1;
+
+let playGame = true;
+
+if (playGame) {
+  submit.addEventListener('click', function (e) {
+    e.preventDefault(); // we are using this because, we are in form element where submit will trigger values to post in url
+    const guess = parseInt(userinput.value);
+    console.log(guess);
+    validateGuess(guess);
+  });
+}
+
+function validateGuess(guess) {
+  // in this section we will check the value entered is ok or not
+  if (isNaN(guess)) {
+    alert('please enter a valid number');
+  } else if (guess < 1) {
+    alert('please enter a valid number more than 1');
+  } else if (guess > 100) {
+    alert('please enter a valid number less than 100');
+  } else {
+    prevGuess.push(guess);
+    if (numGuess === 11) {
+      displayGuess(guess);
+      displayMessage(`Game over. Random Number was ${randomNumber}`);
+      endGame();
+    } else {
+      displayGuess(guess);
+      checkGuess(guess);
+    }
+  }
+}
+
+function checkGuess(guess) {
+  // we will check user value with aur random ans number
+  if (guess === randomNumber) {
+    displayMessage('you guessed it write');
+    endGame();
+  } else if (guess <= randomNumber) {
+    displayMessage('number is too low');
+  } else if (guess >= randomNumber) {
+    displayMessage('number is too high');
+    // console.log(randomNumber);
+  }
+}
+
+function displayGuess(guess) {
+  // clean values for netx entrty,we display the guess update the dom accordingly
+
+  userinput.value = '';
+  guessSlot.innerHTML += `${guess} `;
+  numGuess++;
+  remaining.innerHTML = `${11 - numGuess}`;
+}
+
+function displayMessage(message) {
+  // lowOrHi me msg print krva denge
+
+  lowOrHi.innerHTML = `<h2>${message}</h2>`;
+}
+
+function endGame() {
+  userinput.value = '';
+  userinput.setAttribute('disabled', '');
+  p.classList.add('button');
+  p.innerHTML = `<h2 id="newGame">Start new Game</h2>`;
+  startOver.appendChild(p);
+  console.log(startOver)
+  playGame = false;
+  newGame();
+}
+
+function newGame() {
+  const newGameButton = document.querySelector('#newGame')
+  newGameButton.addEventListener("click", function(e){
+    randomNumber = parseInt(Math.random() * 100 + 1);
+    prevGuess=[];
+    numGuess=1
+    guessSlot.innerHTML='';
+    remaining.innerHTML=`${11 - numGuess}`;
+    userinput.removeAttribute('disabled','')
+    startOver.removeChild(p);
+    displayMessage('')
+
+    playGame=true;
+
+  })
+
+}
 
 ```
