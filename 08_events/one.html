@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>events
+    </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://cdn.shopify.com/s/files/1/0078/8535/7141/products/1_5b5ae281-1904-48d3-94ba-1f5e98894238_1024x1024@2x.jpg?v=1559563984" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://tse2.mm.bing.net/th/id/OIP.pOqw-SHDhfTGfeRPpab_rwHaEo?pid=ImgDet&rs=1" alt=""></li>
+            <li><img width="200px" id="river" src="https://tse2.mm.bing.net/th/id/OIP.xLGzKtkI_uvu9FPme-aoNwHaLH?pid=ImgDet&rs=1" alt=""></li>
+            <li><img width="200px" id="owl" src="https://tse4.mm.bing.net/th/id/OIP.CkQlgrWA_AyeXy_cgFcHNwHaEo?pid=ImgDet&rs=1" alt="owl"  ></li>
+            <li><img width="200px" id="prayer" src="https://tse3.mm.bing.net/th/id/OIP.bbbwVPogWlADpJ2OsFwVuQHaEK?pid=ImgDet&rs=1" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+
+    // document.getElementById('owl').onclick=function (){
+    //     alert("hello");
+    // }   // this is one way to apply event
+
+
+    // document.getElementById('owl').addEventListener('click',function (){
+    //     alert("hello clicked");
+    // },false)   
+// now you will be why this false is used, as by default it values is set to false that is why we generally dont use, but its a imp topic that one must know . It is releted to propogation 
+// as suggestion alway use addEvenetListner for adding evenets , event listner is imp topic in interves
+
+// attachEvent()  --> it was used in internet explorer to add event
+// in jQuery .on --> was used as addEvenentListner
+
+    // document.getElementById('owl').addEventListener('click',function (e){
+    //     console.log(e);
+    // },false) 
+
+    //type, timestamp, defaultPrevented(), target, toElement, srcElement, currentTarget, 
+    // clientX, clientY, screenX, screenY an some more position releated it will help in interviews
+    // altKey, ctrlKey, shiftKey,keycode
+
+//*********************************************************************
+    //EVENT PROPOGATION  - iske bare me jan ne k liye pehle ye false and true kya hai ye samjna padega 
+    // EVENT PROPOGATION k 2 context hote h 1. event bubbling -(false, mostly used) 2. event capturing
+
+    // document.getElementById('images').addEventListener('click',function (e){
+    //     console.log("clicked inside the ul");
+    // },false);
+    // document.getElementById('owl').addEventListener('click',function (e){
+    //     console.log("clicked on the owl img");
+    // },false)
+
+    // here it is the question as we have written the two same code, which will first execute ?
+    // ans is, clicked on the owl img
+    //         clicked inside the ul
+
+    // why is it so, yahi ham dekre hai ye hai hamara evenr bubling, bubling kaise kam krta h ki bubble jata h inside to outside (niche se upr) like img-se->li-se->ul  so isliye pehle img ka o/p aya fir ul ka.
+
+
+    // ab ye sahi baat nhi h kuch logo ka sequnce se chalana hoga, to us time ham use krte hai capturing mode , adding value true in addEventListner.
+
+    // document.getElementById('images').addEventListener('click',function (e){
+    //     console.log("clicked inside the ul");
+    // },true);
+    // document.getElementById('owl').addEventListener('click',function (e){
+    //     console.log("clicked on the owl img");
+    // },true)
+
+    // ans, clicked on the owl img
+        //  clicked inside the ul
+
+    // ab ek intresting this, jab ham kam kre hai events k satt , we take above code as example, ab bubbling me jb ham owl pe click kr  rahe to uske saat hamara ul b target hora h means vo b click hora h, but incase mano tumne us ul k liye alag script lika h right and tum chahte ho ki owl ko click krne pe sirf owl ka he changes ho aur ul pe koi asar na ho, to isi chiz k liye hamare pass ek property hota hai vo hai "e.stopPorogataion()""
+
+
+    // document.getElementById('images').addEventListener('click',function (e){
+    //     console.log("clicked inside the ul");
+    // },false);
+    // document.getElementById('owl').addEventListener('click',function (e){
+    //     console.log("clicked on the owl img");
+    //     e.stopPropagation()
+    // },false)
+
+
+    // ********************************************
+    // PreventDefault()
+
+    // ab hamare pass google ka anchor tag hai ab ispe click krne pe ye google site open kr dega, but muje nhi chahiye ki ye render ho ya open ho , so basiically mai uska deafult behaviour band krna chahta hu
+
+    // document.getElementById("google").addEventListener("click",function(e){
+    //     e.preventDefault()
+    //     console.log("google clicked")
+    // },false)
+
+
+    // practice problem, remove the li(image) on click
+
+    document.getElementById('images').addEventListener('click', function(e){
+        // console.log(e.target)
+        // console.log(e.target.parentNode)
+        console.log(e.target.tagName);
+        if (e.target.tagName==='IMG') {
+            console.log(e.target.id);
+            let removeIt= e.target.parentNode
+        removeIt.remove()
+        }
+
+        // let removeIt= e.target.parentNode
+        // removeIt.remove()
+        // removeIt.parentNode.removeChild(removeIt);   // another way 
+
+
+    },false)
+
+</script>
+</html>
