@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async with chai aur code</title>
+</head>
+<body>
+    <h1>chai aur javascript</h1>
+    <h2 id="count">0</h2>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    // setInterval(function(){
+    //     console.log("hello");
+    // },2000)
+
+        const sayDate =function(){
+        console.log("hello", Date.now());
+    }
+    // setInterval(sayDate,1000)
+    const intervalId=setInterval(sayDate,1000)
+
+    clearInterval(intervalId)
+// ************************************************************
+    // assignment
+    const start=document.querySelector("#start");
+    const stop=document.querySelector("#stop");
+    
+    let showcount=document.querySelector("#count");
+
+    let count =0;
+
+    const startcount=function(){
+        // console.log(count++);
+        showcount.innerHTML=count++;
+    }
+    
+    start.addEventListener('click',
+    function(){
+        const startcountOnClick=setInterval(startcount,1000);
+        stop.addEventListener('click',function(){
+        // console.log("stop clicked");
+        clearInterval(startcountOnClick);
+
+    })
+    })
+
+    
+
+    
+
+
+</script>
+</html>
