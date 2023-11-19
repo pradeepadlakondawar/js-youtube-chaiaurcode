@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closures</title>
+</head>
+<body>
+    <button id="orange">orange</button>
+    <button id="green">green</button>
+
+<script >
+    function clickHandler(color){
+        // document.body.style.backgroundColor=`${color}` // direclty giving executes the function it doesnt wait for onclick
+
+        // to solve this we wiil use closure
+        return function(){
+            document.body.style.backgroundColor=`${color}`
+        }
+    }
+
+    document.getElementById('orange').onclick=clickHandler("orange")
+    document.getElementById('green').onclick=clickHandler("green")
+
+</script>
+</body>
+</html>
